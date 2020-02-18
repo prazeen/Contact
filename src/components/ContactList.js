@@ -2,8 +2,15 @@ import React from "react";
 
 class ContactList extends React.Component {
   state = {
-    isShowing: false
+    isShowing: false,
+    showHeart: false
   };
+
+  handleHeart = () => {
+    console.log("click");
+    this.setState({ showHeart: !this.state.showHeart });
+  };
+
   handleShowHide = () => {
     console.log("Click");
     this.setState({ isShowing: !this.state.isShowing });
@@ -15,6 +22,8 @@ class ContactList extends React.Component {
   render() {
     console.log(this.props);
     let cls = this.state.isShowing ? "fas fa-sort-up" : "fas fa-sort-down";
+    let hrt = this.state.showHeart ? "fas fa-heart" : "far fa-heart";
+
     console.log(cls);
     return (
       <div className="card w-50 my-5 mx-auto">
@@ -22,6 +31,7 @@ class ContactList extends React.Component {
           <h1>
             <i onClick={this.handleShowHide} className={cls}></i>{" "}
             {this.props.contact.name}
+            <i onClick={this.handleHeart} className={hrt}></i>
             <div className="float-right">
               <i
                 onClick={this.handleDelete}
